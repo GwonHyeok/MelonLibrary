@@ -13,135 +13,135 @@ import org.json.simple.parser.ParseException;
 
 public class Jsonparse {
 
-	
-	public String[] JsonSongInfo(String jsonsonginfourl) {
-		/**
-		 * String MUSICURL = parse.urljsonparse(jsonfileurl, "PATH"); 
-		 * String SongName = parse.urljsonparse(jsonfileurl, "CNAME"); 
-		 * String SingerName = parse.urljsonparse(jsonfileurl, "PNAME"); 
-		 * String Bitrate = parse.urljsonparse(jsonfileurl, "BITRATE");
-		 * String LyricsURL = parse.urljsonparse(jsonfileurl, "LYRICSPATH");
-		 * String Albumid = 'parse.urljsonparse(jsonfileurl, "ALBUMID");
-		 */
-		try {
-			URL url = new URL(jsonsonginfourl);
-			url.openStream();
-			String out = new Scanner(url.openStream(), "UTF-8").useDelimiter(
-					"\\A").next();
-			JSONParser parser = new JSONParser();
-			Object obj = parser.parse(out);
-			JSONObject job = (JSONObject) obj;
-			String PATH = (String) job.get("PATH");
-			String CNAME = (String) job.get("CNAME");
-			String PNAME = (String) job.get("PNAME");
-			String BITRATE = (String) job.get("BITRATE");
-			String LYRICSPATH = (String) job.get("LYRICSPATH");
-			String ALBUMID = (String) job.get("ALBUMID");
-			String[] songinfo = new String[] { PATH, CNAME, PNAME, BITRATE,
-					LYRICSPATH, ALBUMID };
-			return songinfo;
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
 
-	public String urljsonparse(String aurl, String name) {
-		try {
-			URL url = new URL(aurl);
-			url.openStream();
-			String out = new Scanner(url.openStream(), "UTF-8").useDelimiter(
-					"\\A").next();
-			JSONParser parser = new JSONParser();
+    public String[] JsonSongInfo(String jsonsonginfourl) {
+        /**
+         * String MUSICURL = parse.urljsonparse(jsonfileurl, "PATH");
+         * String SongName = parse.urljsonparse(jsonfileurl, "CNAME");
+         * String SingerName = parse.urljsonparse(jsonfileurl, "PNAME");
+         * String Bitrate = parse.urljsonparse(jsonfileurl, "BITRATE");
+         * String LyricsURL = parse.urljsonparse(jsonfileurl, "LYRICSPATH");
+         * String Albumid = 'parse.urljsonparse(jsonfileurl, "ALBUMID");
+         */
+        try {
+            URL url = new URL(jsonsonginfourl);
+            url.openStream();
+            String out = new Scanner(url.openStream(), "UTF-8").useDelimiter(
+                    "\\A").next();
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(out);
+            JSONObject job = (JSONObject) obj;
+            String PATH = (String) job.get("PATH");
+            String CNAME = (String) job.get("CNAME");
+            String PNAME = (String) job.get("PNAME");
+            String BITRATE = (String) job.get("BITRATE");
+            String LYRICSPATH = (String) job.get("LYRICSPATH");
+            String ALBUMID = (String) job.get("ALBUMID");
+            String[] songinfo = new String[]{PATH, CNAME, PNAME, BITRATE,
+                    LYRICSPATH, ALBUMID};
+            return songinfo;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-			Object obj = parser.parse(out);
+    public String urljsonparse(String aurl, String name) {
+        try {
+            URL url = new URL(aurl);
+            url.openStream();
+            String out = new Scanner(url.openStream(), "UTF-8").useDelimiter(
+                    "\\A").next();
+            JSONParser parser = new JSONParser();
 
-			JSONObject jsonObject = (JSONObject) obj;
+            Object obj = parser.parse(out);
 
-			String gap = (String) jsonObject.get(name);
+            JSONObject jsonObject = (JSONObject) obj;
 
-			return gap;
+            String gap = (String) jsonObject.get(name);
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+            return gap;
 
-	public String jsonparse(String file, String name) {
-		JSONParser parser = new JSONParser();
-		try {
-			Object obj = parser.parse(new FileReader(file));
-			JSONObject jsonObject = (JSONObject) obj;
-			String gap = (String) jsonObject.get(name);
-			return gap;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-	public String[] melonerror(String aurl, String name, String period) {
-		try {
-			URL url = new URL(aurl);
-			url.openStream();
-			String out = new Scanner(url.openStream(), "UTF-8").useDelimiter(
-					"\\A").next();
-			JSONParser parser = new JSONParser();
+    public String jsonparse(String file, String name) {
+        JSONParser parser = new JSONParser();
+        try {
+            Object obj = parser.parse(new FileReader(file));
+            JSONObject jsonObject = (JSONObject) obj;
+            String gap = (String) jsonObject.get(name);
+            return gap;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-			Object obj = parser.parse(out);
+    public String[] melonerror(String aurl, String name, String period) {
+        try {
+            URL url = new URL(aurl);
+            url.openStream();
+            String out = new Scanner(url.openStream(), "UTF-8").useDelimiter(
+                    "\\A").next();
+            JSONParser parser = new JSONParser();
 
-			JSONObject jsonObject = (JSONObject) obj;
-			String gap = (String) jsonObject.get(name);
-			String gap1 = (String) jsonObject.get(period);
-			JSONObject messageobject = (JSONObject) jsonObject.get("OPTION");
-			String message = "NoMessage";
-			String[] data = new String[] { gap, gap1, message };
-			try {
-				message = (String) messageobject.get("MESSAGE");
-			} catch (NullPointerException e) {
-			}
-			return data;
+            Object obj = parser.parse(out);
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+            JSONObject jsonObject = (JSONObject) obj;
+            String gap = (String) jsonObject.get(name);
+            String gap1 = (String) jsonObject.get(period);
+            JSONObject messageobject = (JSONObject) jsonObject.get("OPTION");
+            String message = "NoMessage";
+            String[] data = new String[]{gap, gap1, message};
+            try {
+                message = (String) messageobject.get("MESSAGE");
+            } catch (NullPointerException e) {
+            }
+            return data;
 
-		return null;
-	}
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-	public String downloadParse(String aurl) {
-		try {
-			URL url = new URL(aurl);
-			String out = new Scanner(url.openStream(), "UTF-8").useDelimiter(
-					"\\A").next();
+        return null;
+    }
 
-			JSONParser parser = new JSONParser();
-			Object obj = parser.parse(out);
-			JSONObject jsonObject = (JSONObject) obj;
-			JSONArray array = (JSONArray) jsonObject.get("CONTENTLIST");
+    public String downloadParse(String aurl) {
+        try {
+            URL url = new URL(aurl);
+            String out = new Scanner(url.openStream(), "UTF-8").useDelimiter(
+                    "\\A").next();
 
-			JSONObject j = (JSONObject) array.get(0);
-			String MP3DOWNURL = (String) j.get("PATH");
-			String FILENAME = (String) j.get("FILENAME");
-			return MP3DOWNURL + "#" + FILENAME;
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(out);
+            JSONObject jsonObject = (JSONObject) obj;
+            JSONArray array = (JSONArray) jsonObject.get("CONTENTLIST");
 
-		} catch (IOException e) {
+            JSONObject j = (JSONObject) array.get(0);
+            String MP3DOWNURL = (String) j.get("PATH");
+            String FILENAME = (String) j.get("FILENAME");
+            return MP3DOWNURL + "#" + FILENAME;
 
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+        } catch (IOException e) {
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }
