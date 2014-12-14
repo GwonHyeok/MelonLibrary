@@ -5,8 +5,8 @@ import java.io.IOException;
 import com.hyeok.melon.Melon;
 import com.hyeok.melon.MelonSearch;
 import com.hyeok.melon.Exception.LoginFailException;
-import com.hyeok.melon.MelonSearch.SearchData;
 import com.hyeok.melon.MelonSong;
+import com.hyeok.melon.SearchData;
 
 public class Main {
     private static String id = "kh4975";
