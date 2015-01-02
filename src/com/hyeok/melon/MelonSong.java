@@ -2,6 +2,7 @@ package com.hyeok.melon;
 
 import java.io.IOException;
 
+import com.hyeok.melon.Exception.GetSongDataException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -21,7 +22,7 @@ public class MelonSong {
         this.keyCookie = keyCookie;
     }
 
-    public void getSongData(String SID) {
+    public void getSongData(String SID) throws GetSongDataException {
         this.SID = SID;
         String data = "cpid=AS40&command=stream&act=getPath&ctype=1&cid=#MCID&metatype=HD&ukey=";
         data = data + keyCookie;
@@ -41,9 +42,7 @@ public class MelonSong {
             this.Genre = songinfoelements.select("dd").get(4).ownText();
             this.Albumname = albumnameelements.get(0).ownText();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
+            throw new GetSongDataException("Error When Song Data parsing\n" + e.getMessage());
         }
     }
 

@@ -2,6 +2,7 @@ package com.hyeok.test;
 
 import java.io.IOException;
 
+import com.hyeok.melon.Exception.GetSongDataException;
 import com.hyeok.melon.Melon;
 import com.hyeok.melon.MelonSearch;
 import com.hyeok.melon.Exception.LoginFailException;
@@ -69,6 +70,8 @@ public class Main {
             System.out.println("StringLyrics : " + melonsong.getStringLyrics());
             System.out.println("BanSong : " + melonsong.isBanSong());
         } catch (LoginFailException e) {
+            e.printStackTrace();
+        } catch (GetSongDataException e) {
             e.printStackTrace();
         }
 
